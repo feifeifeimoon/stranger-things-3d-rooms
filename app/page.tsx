@@ -1,25 +1,36 @@
-'use client';
-
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import Experience from '@/components/Experience'; // We will create this component
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      <Canvas
-        shadows // Enable shadows for the scene
-        camera={{
-          fov: 45,
-          near: 0.1,
-          far: 200,
-          position: [ -4, 3, 6 ] // Initial camera position
+    <main
+      style={{
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#171717',
+        color: 'white',
+        fontFamily: 'sans-serif',
+      }}
+    >
+      <h1 style={{ fontSize: '3rem', marginBottom: '2rem' }}>
+        Stranger Things 3D Rooms
+      </h1>
+      <Link
+        href="/living-room"
+        style={{
+          fontSize: '1.5rem',
+          padding: '1rem 2rem',
+          border: '1px solid white',
+          borderRadius: '8px',
+          textDecoration: 'none',
+          color: 'white',
         }}
       >
-        <color attach="background" args={[ '#171717' ]} /> {/* Dark background */}
-        <Experience />
-        <OrbitControls makeDefault /> {/* Default camera controls */}
-      </Canvas>
+        Enter The Byers Living Room
+      </Link>
     </main>
   );
 }

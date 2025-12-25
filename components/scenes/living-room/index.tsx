@@ -1,7 +1,9 @@
 import React from 'react';
+import { useThree } from '@react-three/fiber';
 import { Box } from '@react-three/drei';
 import BlinkingLight from './BlinkingLight';
 import { useControls } from 'leva';
+import { Model as Sofa } from './Sofa';
 
 export default function LivingRoom() {
   const { intensity: ambientIntensity } = useControls('Ambient Light', {
@@ -16,8 +18,10 @@ export default function LivingRoom() {
     }
   );
 
-  const { color: boxColor } = useControls('Box', {
-    color: 'hotpink',
+  const { position, rotation, scale } = useControls('Sofa', {
+    position: { value: [0, 0, 0], step: 0.1 },
+    rotation: { value: [0, 0, 0], step: 0.1 },
+    scale: { value: 1, min: 0.1, max: 2, step: 0.1 },
   });
 
   return (
@@ -33,10 +37,11 @@ export default function LivingRoom() {
 
       <BlinkingLight position={[0, 3, 0]} />
 
-      {/* A simple box to test the scene */}
-      <Box args={[1, 1, 1]} position={[0, 0.5, 0]} castShadow receiveShadow>
-        <meshStandardMaterial color={boxColor} />
-      </Box>
+      <Sofa
+        position={position}
+        rotation={rotation}
+        scale={scale}
+      />
 
       {/* Floor */}
       <mesh rotation-x={-Math.PI * 0.5} position-y={0} receiveShadow>

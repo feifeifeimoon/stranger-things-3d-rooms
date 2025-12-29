@@ -5,7 +5,7 @@ Files: public/models/living-room/sofa.glb [36.42MB] > /Users/feifeifei/Workspace
 */
 
 import * as THREE from 'three'
-import React from 'react'
+import React, {JSX} from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 
@@ -16,11 +16,11 @@ type GLTFResult = GLTF & {
   materials: {
     model: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
+  // animations: GLTFAction[]
 }
 
 export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/models/living-room/sofa-transformed.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('/models/living-room/sofa-transformed.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
       <mesh castShadow receiveShadow geometry={nodes.model.geometry} material={materials.model} />
